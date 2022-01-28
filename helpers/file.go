@@ -1,9 +1,7 @@
 package helpers
 
 import (
-	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 
@@ -15,35 +13,38 @@ type config struct {
 	Profiles map[string]models.Profile `yaml:"profiles"`
 }
 
-func ReadConfig() config {
-	ex, err1 := os.Executable()
+func ReadConfig() (config, error) {
+	ex, err := os.Executable()
 
-	if err1 != nil {
-		panic(err1)
+	if err != nil {
+		return config{}, err
 	}
 
 	exPath := filepath.Dir(ex)
-	yfile, err := ioutil.ReadFile(exPath + "/config.yaml")
+	yfile, err1 := ioutil.ReadFile(exPath + "/config.yaml")
 
-	if err != nil {
-		log.Fatal(err)
+	if err1 != nil {
+		return config{}, err1
 	}
 
 	data := config{}
 	err2 := yaml.Unmarshal(yfile, &data)
 
 	if err2 != nil {
-		log.Fatal(err2)
+		return config{}, err2
 	}
 
-	return data
+	return data, nil
 }
 
-func GetProfileByName(profileName string) models.Profile {
-	config := ReadConfig()
+func GetProfileByName(profileName string) (models.Profile, error) {
+	config, err := ReadConfig()
+
+	if err != nil {
+		return models.Profile{}, err
+	}
 
 	profile := config.Profiles[profileName]
-	fmt.Println(profile)
 
-	return profile
+	return profile, nil
 }
