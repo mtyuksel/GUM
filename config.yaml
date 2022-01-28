@@ -1,0 +1,10 @@
+profiles:
+  default:
+    email: "default@default.com"
+    username: "default" 
+  company:
+    email: "company@company.com"
+    username: "company" 
+  personal:
+    email: "personal@personal.com"
+    username: "personal"          
