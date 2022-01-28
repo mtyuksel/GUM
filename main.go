@@ -10,7 +10,6 @@ import (
 
 func main() {
 	profileName := os.Args[1]
-
 	profile, err := helpers.GetProfileByName(profileName)
 
 	if err != nil {

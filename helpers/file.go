@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"errors"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -45,6 +46,10 @@ func GetProfileByName(profileName string) (models.Profile, error) {
 	}
 
 	profile := config.Profiles[profileName]
+
+	if profile == (models.Profile{}) {
+		return profile, errors.New("profile name does not exists please check config.yaml file")
+	}
 
 	return profile, nil
 }
