@@ -2,28 +2,32 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 
-	"github.com/mtyuksel/gum/helpers"
+	"github.com/mtyuksel/gum/handler"
 )
 
 func main() {
-	profileName := os.Args[1]
-	profile, err := helpers.GetProfileByName(profileName)
+	argsCount := len(os.Args)
+	var operation string
 
+	if argsCount > 1 {
+		operation = os.Args[1]
+	}
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
 
-	err1 := helpers.SetProfile(profile)
-
-	if err1 != nil {
-		log.Fatal(err1)
+	if operation == "set" {
+		if argsCount != 3 {
+			fmt.Println("please enter a profile name to set")
+			return
+		}
+		profileName := os.Args[2]
+		handler.SetProfile(profileName)
 		return
 	}
 
-	fmt.Println("-> Username: " + profile.Username)
-	fmt.Println("-> Email   : " + profile.Email)
+	fmt.Println("invalid operation type")
 }
