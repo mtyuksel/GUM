@@ -14,8 +14,9 @@ func main() {
 	if argsCount > 1 {
 		operation = os.Args[1]
 	}
-	if err != nil {
-		log.Fatal(err)
+
+	if operation == "show" {
+		handler.ShowProfileNames()
 		return
 	}
 

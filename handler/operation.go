@@ -25,3 +25,7 @@ func SetProfile(profileName string) {
 	fmt.Println("-> Username: " + profile.Username)
 	fmt.Println("-> Email   : " + profile.Email)
 }
+
+func ShowProfileNames() {
+	helpers.ShowProfileNames()
+}

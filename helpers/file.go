@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"fmt"
+
 	"github.com/mtyuksel/gum/models"
 	"gopkg.in/yaml.v3"
 )
@@ -52,4 +54,16 @@ func GetProfileByName(profileName string) (models.Profile, error) {
 	}
 
 	return profile, nil
+}
+
+func ShowProfileNames() {
+	config, err := ReadConfig()
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	for key := range config.Profiles {
+		fmt.Println(key)
+	}
 }
