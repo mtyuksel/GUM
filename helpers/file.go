@@ -3,7 +3,6 @@ package helpers
 import (
 	"errors"
 	"io/ioutil"
-	"os"
 	"path/filepath"
 
 	"fmt"
@@ -17,21 +16,18 @@ type config struct {
 }
 
 func ReadConfig() (config, error) {
-	ex, err := os.Executable()
-
+	file, err := filepath.Abs("config.yaml")
 	if err != nil {
 		return config{}, err
 	}
 
-	exPath := filepath.Dir(ex)
-	yfile, err1 := ioutil.ReadFile(exPath + "/config.yaml")
-
+	yamlFile, err1 := ioutil.ReadFile(file)
 	if err1 != nil {
 		return config{}, err1
 	}
 
 	data := config{}
-	err2 := yaml.Unmarshal(yfile, &data)
+	err2 := yaml.Unmarshal(yamlFile, &data)
 
 	if err2 != nil {
 		return config{}, err2
