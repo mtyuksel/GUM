@@ -37,7 +37,7 @@ gum set <profile-name>
 ```
 ![image](https://user-images.githubusercontent.com/60136172/153279918-46d21fa6-2482-4b89-a003-6e16dbf4f8fa.png)
 
-- You can check your user profile names with the following command:
+- You can list your user profile names with the following command:
 ```
 gum show
 ```
