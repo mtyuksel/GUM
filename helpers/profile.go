@@ -18,10 +18,10 @@ func SetProfile(profile models.Profile) error {
 
 	//To change email
 	cmdEmail := exec.Command("git", "config", "--global", "user.email", fmt.Sprintf("\"%s\"", profile.Email))
-	err2 := cmdEmail.Run()
+	err = cmdEmail.Run()
 
-	if err2 != nil {
-		return err2
+	if err != nil {
+		return err
 	}
 
 	return nil

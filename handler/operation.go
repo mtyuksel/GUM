@@ -15,10 +15,10 @@ func SetProfile(profileName string) {
 		return
 	}
 
-	err1 := helpers.SetProfile(profile)
+	err = helpers.SetProfile(profile)
 
-	if err1 != nil {
-		log.Fatal(err1)
+	if err != nil {
+		log.Fatal(err)
 		return
 	}
 

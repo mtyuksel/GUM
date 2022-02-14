@@ -21,16 +21,16 @@ func ReadConfig() (config, error) {
 		return config{}, err
 	}
 
-	yamlFile, err1 := ioutil.ReadFile(file)
-	if err1 != nil {
-		return config{}, err1
+	yamlFile, err := ioutil.ReadFile(file)
+	if err != nil {
+		return config{}, err
 	}
 
 	data := config{}
-	err2 := yaml.Unmarshal(yamlFile, &data)
+	err = yaml.Unmarshal(yamlFile, &data)
 
-	if err2 != nil {
-		return config{}, err2
+	if err != nil {
+		return config{}, err
 	}
 
 	return data, nil
